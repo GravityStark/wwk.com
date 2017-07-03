@@ -1,0 +1,41 @@
+option java_outer_classname = "RoomMsgProto";
+package message;
+
+enum SysMsgType{
+	JOIN = 1;//加入游戏
+
+
+}
+
+enum GameMsgType{
+	SYSTEM = 1;//系统
+	PLAYER = 2;//玩家
+}
+
+enum JoinerStatus{
+	WAIT = 1;//等待
+	READY = 2;//准备
+	LIVE = 3;//存活
+	DEAD = 4;//死亡
+}
+
+enum DeadReason{
+	KILL = 1;//狼杀
+	VOTE = 2;//投票
+	POISON = 3;//毒杀
+	AWAY = 4;//逃跑
+}
+
+enum RoomStatus{
+	IDLE = 1;//空闲
+	RUNNING = 2;//游戏中
+}
+
+enum GameRole{
+	ALLROLE = 0;//所有角色
+	WERWOLF = 1;//狼人
+	CIVILIAN = 2;//平民
+	WITCH = 3;//女巫
+	HUNTER = 4;//猎人
+	PROPHET = 5;//预言家
+}

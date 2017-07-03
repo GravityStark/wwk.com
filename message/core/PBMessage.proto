@@ -1,0 +1,14 @@
+// 玩家基本属性
+option java_outer_classname = "PBMessageProto";
+
+package message.core;
+
+/**
+ * 主协议栈
+ */
+message PBMessage{
+	optional string playerId = 1; //玩家id
+	optional int32 code = 2; //操作码id
+	optional int32 pushCode = 3;//推送的类型
+	optional bytes data = 4; //请求or响应数据
+}

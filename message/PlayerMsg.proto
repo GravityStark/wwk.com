@@ -1,0 +1,20 @@
+// 玩家基本属性
+option java_outer_classname = "PlayerProto";
+
+package message;
+
+
+message PlayerMsg{
+    optional string id = 1; //玩家唯一ID
+    optional string name = 2;//玩家名称
+    optional int32 imgId = 3;//玩家头像ID
+}
+
+
+message LoginReq{
+	optional string id = 1; //玩家唯一ID
+}
+message LoginRsp{
+	optional bool success = 1;
+	optional PlayerMsg player = 2;
+}
