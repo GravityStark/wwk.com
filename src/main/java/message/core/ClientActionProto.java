@@ -33,6 +33,14 @@ public final class ClientActionProto {
      * </pre>
      */
     ACTION_LOGIN(1, 2),
+    /**
+     * <code>ACTION_CREAT_ROOM = 3;</code>
+     *
+     * <pre>
+     *登录;
+     * </pre>
+     */
+    ACTION_CREAT_ROOM(2, 3),
     ;
 
     /**
@@ -51,6 +59,14 @@ public final class ClientActionProto {
      * </pre>
      */
     public static final int ACTION_LOGIN_VALUE = 2;
+    /**
+     * <code>ACTION_CREAT_ROOM = 3;</code>
+     *
+     * <pre>
+     *登录;
+     * </pre>
+     */
+    public static final int ACTION_CREAT_ROOM_VALUE = 3;
 
 
     public final int getNumber() { return value; }
@@ -59,6 +75,7 @@ public final class ClientActionProto {
       switch (value) {
         case 1: return ACTION_HEARTBEAT;
         case 2: return ACTION_LOGIN;
+        case 3: return ACTION_CREAT_ROOM;
         default: return null;
       }
     }
@@ -120,8 +137,9 @@ public final class ClientActionProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\027core/ClientAction.proto\022\014message.core*" +
-      "6\n\014ClientAction\022\024\n\020ACTION_HEARTBEAT\020\001\022\020\n" +
-      "\014ACTION_LOGIN\020\002B\023B\021ClientActionProto"
+      "M\n\014ClientAction\022\024\n\020ACTION_HEARTBEAT\020\001\022\020\n" +
+      "\014ACTION_LOGIN\020\002\022\025\n\021ACTION_CREAT_ROOM\020\003B\023" +
+      "B\021ClientActionProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

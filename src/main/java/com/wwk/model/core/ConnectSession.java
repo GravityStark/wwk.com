@@ -1,8 +1,5 @@
 package com.wwk.model.core;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.google.protobuf.Message;
 
 import io.netty.channel.Channel;
@@ -20,8 +17,6 @@ public class ConnectSession {
 	private PBMessage request = null;// 请求数据
 	private Channel channel = null;// 连接
 	private PBMessage.Builder response = null; // 响应数据
-	private Map<Integer, Long> logData = null; // Flow日志数据
-	private long recvTime; // 请求接收时间
 
 	public ConnectSession(PBMessage request, Channel channel) {
 		this.request = request;
@@ -31,10 +26,6 @@ public class ConnectSession {
 		this.response = PBMessage.newBuilder();
 		this.response.setCode(request.getCode());
 		this.response.setPlayerId(request.getPlayerId());
-
-		this.recvTime = System.currentTimeMillis();
-
-		this.logData = new HashMap<Integer, Long>();
 	}
 
 	/**

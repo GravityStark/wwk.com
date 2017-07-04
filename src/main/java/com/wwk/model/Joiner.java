@@ -1,9 +1,11 @@
 package com.wwk.model;
 
 import com.wwk.model.core.BaseModel;
+import com.wwk.utils.PropUtil;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import message.RoomMsgProto.JoinerMsg;
 import message.RoomMsgProto.JoinerStatus;
 
 /**
@@ -23,5 +25,17 @@ public class Joiner extends BaseModel{
 		super();
 		this.player = player;
 		status = JoinerStatus.WAIT_VALUE;
+	}
+	
+	/**
+	 * 生成协议
+	 * @return
+	 * @throws Exception
+	 */
+	public JoinerMsg.Builder genProto() throws Exception {
+		JoinerMsg.Builder builder = JoinerMsg.newBuilder();
+		PropUtil.copyProperties(builder, this, JoinerMsg.Builder.getDescriptor());
+		builder.setPlayerMsg(player.genProto());
+		return builder;
 	}
 }

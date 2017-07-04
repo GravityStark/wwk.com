@@ -5,4 +5,5 @@ package message.core;
 enum ClientAction {
 	ACTION_HEARTBEAT = 1; //心跳;
 	ACTION_LOGIN = 2; //登录;
+	ACTION_CREAT_ROOM = 3; //登录;
 }

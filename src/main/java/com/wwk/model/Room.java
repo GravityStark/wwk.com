@@ -6,9 +6,12 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.wwk.model.core.BaseModel;
+import com.wwk.utils.PropUtil;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import message.RoomMsgProto.JoinerListMsg;
+import message.RoomMsgProto.RoomMsg;
 import message.RoomMsgProto.RoomStatus;
 
 /**
@@ -31,5 +34,23 @@ public class Room extends BaseModel{
 		status = RoomStatus.IDLE_VALUE;
 	}
     
-    
+	/**
+	 * 生成协议
+	 * @return
+	 * @throws Exception
+	 */
+	public RoomMsg.Builder genProto() throws Exception {
+		RoomMsg.Builder builder = RoomMsg.newBuilder();
+		PropUtil.copyProperties(builder, this, RoomMsg.Builder.getDescriptor());
+		for (GameMsg gameMsg :msgList) {
+			builder.addMsgs(gameMsg.genProto());
+		}
+		for (Map.Entry<Integer,Joiner> entry :joiners.entrySet()) {
+			JoinerListMsg.Builder builder2 = JoinerListMsg.newBuilder();
+			builder2.setLocation(entry.getKey());
+			builder2.setJoiner(entry.getValue().genProto());
+			builder.addJoinerListMsg(builder2);
+		}
+		return builder;
+	}
 }

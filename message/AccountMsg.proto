@@ -1,0 +1,32 @@
+// 账号信息
+option java_outer_classname = "AccountProto";
+
+package message;
+
+import "PlayerMsg.proto";
+
+
+/**
+ * 登录
+ */
+message LoginReq{
+	optional string accountName = 1; //账号名
+	optional string password = 2; //密码
+	required int32 type = 3;//  LOGIN_TYPE
+}
+message LoginRsp{
+	optional int32 result = 1;
+	optional PlayerMsg player = 2;
+}
+
+enum LOGIN_TYPE{
+	LOGIN = 1;//
+	CREATE = 2;//
+}
+
+enum LOGIN_RESULT_TYPE{
+	NO_ACCOUNT = 1;//账号不存在
+	PWD_ERROR = 2;//密码错误
+	SUCCESS = 3;//成功
+	CREATE_NAME_EXIST = 4;//账号名存在
+}

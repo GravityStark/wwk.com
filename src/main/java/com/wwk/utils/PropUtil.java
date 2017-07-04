@@ -38,6 +38,7 @@ public class PropUtil {
 			for (Field f : fields) {
 				Descriptors.FieldDescriptor fd = descriptor.findFieldByName(f.getName());
 				if (fd != null && fd.getJavaType() != JavaType.MESSAGE) {
+					f.setAccessible(true);
 					Object value = f.get(srcObject);
 					if (value == null) {
 						continue;

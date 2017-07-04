@@ -10,11 +10,3 @@ message PlayerMsg{
     optional int32 imgId = 3;//玩家头像ID
 }
 
-
-message LoginReq{
-	optional string id = 1; //玩家唯一ID
-}
-message LoginRsp{
-	optional bool success = 1;
-	optional PlayerMsg player = 2;
-}

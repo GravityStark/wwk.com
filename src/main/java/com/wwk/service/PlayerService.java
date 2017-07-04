@@ -55,6 +55,7 @@ public class PlayerService {
 		player.setImgId(1);
 		player.setName("player"+player.getId());
 		
+		dao.save(player);
 		return player;
 	}
 }

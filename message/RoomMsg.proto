@@ -1,6 +1,48 @@
 option java_outer_classname = "RoomMsgProto";
 package message;
 
+import "PlayerMsg.proto";
+
+message RoomMsg{
+	optional string id = 1;//房主id
+	optional int32 status = 2;//房间状态     1：空闲 2：游戏中
+	repeated JoinerListMsg joinerListMsg = 3;//房间成员 <位置，玩家信息>
+    repeated GameMsgPro msgs = 4;//房间信息记录
+}
+
+message GameMsgPro{
+	optional uint64 time = 1;//时间
+	optional int32 type = 2;//0:系统;1：玩家   GameMsgType
+	optional string pMsg = 3;//玩家发送信息
+	optional SysMsgPro sys = 4;//系统信息
+}
+
+message SysMsgPro{
+		optional int32 type = 1;//枚举类型 SysMsgType
+		optional int32 target1 = 2;//
+		optional int32 target2 = 3;//
+}
+message JoinerListMsg{
+	optional int32 location = 1;//位置
+	optional JoinerMsg joiner = 2;//参与者
+}
+
+message JoinerMsg{
+    optional PlayerMsg playerMsg = 1; //玩家信息
+    optional int32 status = 2;//当前状态 (枚举JoinerStatus)
+    optional int32 deadReason = 3;//死亡原因 (枚举DeadReason)
+    optional int32 role = 4;//角色枚举Role)
+}
+/**
+ * 创建房间
+ */
+message CreatRoomReq{
+}
+message CreatRoomRsp{
+  optional RoomMsg room = 1;
+}
+
+
 enum SysMsgType{
 	JOIN = 1;//加入游戏
 
