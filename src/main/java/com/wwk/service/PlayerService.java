@@ -52,7 +52,7 @@ public class PlayerService {
 		Player player = new Player();
 		int generateId = IdGenerator.generateId(Player.class.getSimpleName());
 		player.setId(Integer.toString(generateId));
-		player.setImgId(1);
+		player.setImgId((Integer.parseInt(player.getId())%10));
 		player.setName("player"+player.getId());
 		
 		dao.save(player);

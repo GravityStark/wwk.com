@@ -7,7 +7,6 @@ public class HeartBeatAction extends BaseAction{
 
 	@Override
 	public void done(ConnectSession session) {
-		System.out.println("心跳");
 	}
 
 
