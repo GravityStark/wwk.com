@@ -8,7 +8,11 @@ import com.wwk.service.PlayerService;
 import com.wwk.service.RoomService;
 
 import message.RoomMsgProto.CreatRoomRsp;
-
+/**
+ * 创建房间
+ * @author LiuWei
+ *
+ */
 public class CreatRoomAction extends BaseAction{
 
 	@Override
@@ -17,5 +21,6 @@ public class CreatRoomAction extends BaseAction{
 		CreatRoomRsp.Builder builder = CreatRoomRsp.newBuilder();
 		Room room = RoomService.getInstance().createRoom(player);
 		builder.setRoom(room.genProto());
+		session.setResponseMsg(builder.build());
 	}
 }

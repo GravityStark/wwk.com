@@ -10,7 +10,7 @@ import com.wwk.utils.PropUtil;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import message.RoomMsgProto.JoinerListMsg;
+import message.RoomMsgProto.JoinerInfoMsg;
 import message.RoomMsgProto.RoomMsg;
 import message.RoomMsgProto.RoomStatus;
 
@@ -46,10 +46,10 @@ public class Room extends BaseModel{
 			builder.addMsgs(gameMsg.genProto());
 		}
 		for (Map.Entry<Integer,Joiner> entry :joiners.entrySet()) {
-			JoinerListMsg.Builder builder2 = JoinerListMsg.newBuilder();
+			JoinerInfoMsg.Builder builder2 = JoinerInfoMsg.newBuilder();
 			builder2.setLocation(entry.getKey());
 			builder2.setJoiner(entry.getValue().genProto());
-			builder.addJoinerListMsg(builder2);
+			builder.addJoinerInfoMsg(builder2);
 		}
 		return builder;
 	}

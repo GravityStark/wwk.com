@@ -37,10 +37,34 @@ public final class ClientActionProto {
      * <code>ACTION_CREAT_ROOM = 3;</code>
      *
      * <pre>
-     *登录;
+     *创建房间;
      * </pre>
      */
     ACTION_CREAT_ROOM(2, 3),
+    /**
+     * <code>ACTION_JOIN_ROOM = 4;</code>
+     *
+     * <pre>
+     *进入房间;
+     * </pre>
+     */
+    ACTION_JOIN_ROOM(3, 4),
+    /**
+     * <code>ACTION_QUIT_ROOM = 5;</code>
+     *
+     * <pre>
+     *离开房间
+     * </pre>
+     */
+    ACTION_QUIT_ROOM(4, 5),
+    /**
+     * <code>ACTION_SEND_TXT_MSG = 6;</code>
+     *
+     * <pre>
+     *发送文本消息
+     * </pre>
+     */
+    ACTION_SEND_TXT_MSG(5, 6),
     ;
 
     /**
@@ -63,10 +87,34 @@ public final class ClientActionProto {
      * <code>ACTION_CREAT_ROOM = 3;</code>
      *
      * <pre>
-     *登录;
+     *创建房间;
      * </pre>
      */
     public static final int ACTION_CREAT_ROOM_VALUE = 3;
+    /**
+     * <code>ACTION_JOIN_ROOM = 4;</code>
+     *
+     * <pre>
+     *进入房间;
+     * </pre>
+     */
+    public static final int ACTION_JOIN_ROOM_VALUE = 4;
+    /**
+     * <code>ACTION_QUIT_ROOM = 5;</code>
+     *
+     * <pre>
+     *离开房间
+     * </pre>
+     */
+    public static final int ACTION_QUIT_ROOM_VALUE = 5;
+    /**
+     * <code>ACTION_SEND_TXT_MSG = 6;</code>
+     *
+     * <pre>
+     *发送文本消息
+     * </pre>
+     */
+    public static final int ACTION_SEND_TXT_MSG_VALUE = 6;
 
 
     public final int getNumber() { return value; }
@@ -76,6 +124,9 @@ public final class ClientActionProto {
         case 1: return ACTION_HEARTBEAT;
         case 2: return ACTION_LOGIN;
         case 3: return ACTION_CREAT_ROOM;
+        case 4: return ACTION_JOIN_ROOM;
+        case 5: return ACTION_QUIT_ROOM;
+        case 6: return ACTION_SEND_TXT_MSG;
         default: return null;
       }
     }
@@ -137,9 +188,11 @@ public final class ClientActionProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\027core/ClientAction.proto\022\014message.core*" +
-      "M\n\014ClientAction\022\024\n\020ACTION_HEARTBEAT\020\001\022\020\n" +
-      "\014ACTION_LOGIN\020\002\022\025\n\021ACTION_CREAT_ROOM\020\003B\023" +
-      "B\021ClientActionProto"
+      "\222\001\n\014ClientAction\022\024\n\020ACTION_HEARTBEAT\020\001\022\020" +
+      "\n\014ACTION_LOGIN\020\002\022\025\n\021ACTION_CREAT_ROOM\020\003\022" +
+      "\024\n\020ACTION_JOIN_ROOM\020\004\022\024\n\020ACTION_QUIT_ROO" +
+      "M\020\005\022\027\n\023ACTION_SEND_TXT_MSG\020\006B\023B\021ClientAc" +
+      "tionProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

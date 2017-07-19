@@ -1,8 +1,12 @@
 option java_outer_classname = "PushMsgProto";
 package message.core;
+
 // 推送数据类型
 enum PushType {
-		PUSH_PLAYER = 1; //玩家数据
+	PUSH_PLAYER = 1; //玩家数据  PlayerMsg
+	PUSH_JOIN_GAME = 2; //玩家加入游戏   JoinerInfoMsg
+	PUSH_QUIT_GAME = 3; //玩家离开游戏    JoinerInfoMsg
+	PUSH_SEND_TXT_MSG = 4; //文本信息推送   GameMsgPro
+	PUSH_SEND_VOICE_MSG = 5; //语音信息推送
+	PUSH_ROOM_MSG = 6; //房间信息变更  RoomMsg
 }
-
-

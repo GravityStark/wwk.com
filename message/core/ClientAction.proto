@@ -5,5 +5,8 @@ package message.core;
 enum ClientAction {
 	ACTION_HEARTBEAT = 1; //心跳;
 	ACTION_LOGIN = 2; //登录;
-	ACTION_CREAT_ROOM = 3; //登录;
+	ACTION_CREAT_ROOM = 3; //创建房间;
+	ACTION_JOIN_ROOM = 4; //进入房间;
+	ACTION_QUIT_ROOM = 5; //离开房间
+	ACTION_SEND_TXT_MSG = 6; //发送文本消息
 }

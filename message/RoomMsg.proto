@@ -2,31 +2,43 @@ option java_outer_classname = "RoomMsgProto";
 package message;
 
 import "PlayerMsg.proto";
-
+/**
+*  房间信息
+*/
 message RoomMsg{
 	optional string id = 1;//房主id
 	optional int32 status = 2;//房间状态     1：空闲 2：游戏中
-	repeated JoinerListMsg joinerListMsg = 3;//房间成员 <位置，玩家信息>
+	repeated JoinerInfoMsg joinerInfoMsg = 3;//房间成员 <位置，玩家信息>
     repeated GameMsgPro msgs = 4;//房间信息记录
 }
-
+/**
+*  游戏信息
+*/
 message GameMsgPro{
 	optional uint64 time = 1;//时间
 	optional int32 type = 2;//0:系统;1：玩家   GameMsgType
 	optional string pMsg = 3;//玩家发送信息
-	optional SysMsgPro sys = 4;//系统信息
+	optional int32 senderId = 4;//几号玩家
+	optional SysMsgPro sys = 5;//系统信息
 }
-
+/**
+*  系统信息
+*/
 message SysMsgPro{
 		optional int32 type = 1;//枚举类型 SysMsgType
 		optional int32 target1 = 2;//
 		optional int32 target2 = 3;//
 }
-message JoinerListMsg{
+/**
+*    参与者信息
+*/
+message JoinerInfoMsg{
 	optional int32 location = 1;//位置
 	optional JoinerMsg joiner = 2;//参与者
 }
-
+/**
+*  参与者
+*/
 message JoinerMsg{
     optional PlayerMsg playerMsg = 1; //玩家信息
     optional int32 status = 2;//当前状态 (枚举JoinerStatus)
@@ -41,10 +53,37 @@ message CreatRoomReq{
 message CreatRoomRsp{
   optional RoomMsg room = 1;
 }
-
+/**
+ * 加入房间
+ */
+message JoinRoomReq{
+}
+message JoinRoomRsp{
+	optional bool success = 1;//结果
+	optional RoomMsg room = 2;
+}
+/**
+ * 离开房间
+ */
+message QuitRoomReq{
+	optional string id = 1;//房间ID
+}
+message QuitRoomRsp{
+	optional bool success = 1;//结果
+}
+/**
+ * 发送文本信息
+ */
+message SendTxtMsgReq{
+	optional string id = 1;//房间ID
+	optional string content = 2;//内容
+}
+message SendTxtMsgRsp{
+	optional bool success = 1;//结果
+}
 
 enum SysMsgType{
-	JOIN = 1;//加入游戏
+	 VOTEINFO = 1;//投票信息
 
 
 }

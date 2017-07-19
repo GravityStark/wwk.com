@@ -5,6 +5,7 @@ import com.wwk.model.Account;
 import com.wwk.model.Player;
 import com.wwk.model.core.ConnectSession;
 import com.wwk.service.AccountService;
+import com.wwk.service.OnlineService;
 import com.wwk.service.PlayerService;
 
 import message.AccountProto.LOGIN_TYPE;
@@ -33,6 +34,7 @@ public class LoginAction extends BaseAction {
 					AccountService.getInstance().save(account);
 				}	
 				builder.setPlayer(player.genProto());
+				player.setChannel(session.getChannel());
 			}
 		} else if(req.getType() == LOGIN_TYPE.CREATE_VALUE){
 			Account account = AccountService.getInstance().loadAccount(req.getAccountName());
@@ -42,6 +44,8 @@ public class LoginAction extends BaseAction {
 				Player player = AccountService.getInstance().createAccount(req.getAccountName(), req.getPassword());
 				builder.setPlayer(player.genProto());
 				builder.setResult(LOGIN_RESULT_TYPE.SUCCESS_VALUE);
+				player.setChannel(session.getChannel());
+				OnlineService.getInstance().login(player);
 			}
 		}
 		session.setResponseMsg(builder.build());
